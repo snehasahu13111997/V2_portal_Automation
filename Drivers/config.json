@@ -1,0 +1,15 @@
+
+{
+    "username": "rajat@sanas.ai",
+    "password": "Rajat@123",
+    "Uat_Portal": "https://portal-staging.sanas.ai/",
+    "Enterprise": "your2enterprise1",
+    "BPO": "your2bpo1",
+    "location": "your2location1",
+    "seats": "1000",
+    "Email": "Test0001@sanas.ai",
+    "TeamName": "your_team_name",
+    "NewUser": "new_user_name",
+    "UserId": "new_user_id",
+    "CSV": "C:\\Users\\Sneha\\PycharmProjects\\Portal_Automation\\pythonProject\\CSV\\bulk_user_add_Files.csv"
+}
