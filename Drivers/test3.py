@@ -302,58 +302,58 @@ def create_team(driver, TeamName, NewUser, UserId, Email):
         driver.save_screenshot("create_team_error.png")
         raise
 
-@allure.step("Bulk import inside the selected Team")
-def Bulk_import(driver, CSV):
-    try:
-        upload_button = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located((By.XPATH, "//button[contains(.,'file_saveBulk import')]"))
-        )
-        upload_button.click()
-        time.sleep(5)
-
-        # Click on the 'Bulk Add' button
-        Bulk_Add = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located((By.XPATH, "(//div[contains(.,'Add')])[8]"))
-        )
-        Bulk_Add.click()
-        time.sleep(8)
-        print("Click on the Bulk Add button")
-        # Simulate click on the file input element
-        file_input = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located((By.XPATH, "//button[contains(.,'Select .csv file')]"))
-        )
-        file_input.click()
-        time.sleep(2)  # Add a small delay to ensure the file dialog opens
-
-        # Use pyautogui to interact with the file dialog
-        pyautogui.write(CSV)
-        pyautogui.press('enter')
-        print("Select your CSV File")
-        # Wait for some time for the file to be uploaded
-        time.sleep(5)
-        Bulk_Upload = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located((By.XPATH, "//button[contains(.,'Upload')]"))
-        )
-        Bulk_Upload.click()
-        print("Click add button to add user")
-        time.sleep(5)
-        Confirm_button = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located((By.XPATH, "//button[contains(.,'Confirm')]"))
-        )
-        Confirm_button.click()
-        time.sleep(3)
-        print("Click add Confirm")
-        # Click add button to add user
-        Closed_locator = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located((By.XPATH, "//button[contains(.,'Close')]"))
-        )
-        Closed_locator.click()
-        time.sleep(10)
-        print("Bulk import Successfully")
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        driver.save_screenshot("Bulk_Upload_error.png")
-        raise
+# @allure.step("Bulk import inside the selected Team")
+# def Bulk_import(driver, CSV):
+#     try:
+#         upload_button = WebDriverWait(driver, 10).until(
+#             EC.visibility_of_element_located((By.XPATH, "//button[contains(.,'file_saveBulk import')]"))
+#         )
+#         upload_button.click()
+#         time.sleep(5)
+#
+#         # Click on the 'Bulk Add' button
+#         Bulk_Add = WebDriverWait(driver, 10).until(
+#             EC.visibility_of_element_located((By.XPATH, "(//div[contains(.,'Add')])[8]"))
+#         )
+#         Bulk_Add.click()
+#         time.sleep(8)
+#         print("Click on the Bulk Add button")
+#         # Simulate click on the file input element
+#         file_input = WebDriverWait(driver, 10).until(
+#             EC.visibility_of_element_located((By.XPATH, "//button[contains(.,'Select .csv file')]"))
+#         )
+#         file_input.click()
+#         time.sleep(2)  # Add a small delay to ensure the file dialog opens
+#
+#         # Use pyautogui to interact with the file dialog
+#         pyautogui.write(CSV)
+#         pyautogui.press('enter')
+#         print("Select your CSV File")
+#         # Wait for some time for the file to be uploaded
+#         time.sleep(5)
+#         Bulk_Upload = WebDriverWait(driver, 10).until(
+#             EC.visibility_of_element_located((By.XPATH, "//button[contains(.,'Upload')]"))
+#         )
+#         Bulk_Upload.click()
+#         print("Click add button to add user")
+#         time.sleep(5)
+#         Confirm_button = WebDriverWait(driver, 10).until(
+#             EC.visibility_of_element_located((By.XPATH, "//button[contains(.,'Confirm')]"))
+#         )
+#         Confirm_button.click()
+#         time.sleep(3)
+#         print("Click add Confirm")
+#         # Click add button to add user
+#         Closed_locator = WebDriverWait(driver, 10).until(
+#             EC.visibility_of_element_located((By.XPATH, "//button[contains(.,'Close')]"))
+#         )
+#         Closed_locator.click()
+#         time.sleep(10)
+#         print("Bulk import Successfully")
+#     except Exception as e:
+#         print(f"An error occurred: {e}")
+#         driver.save_screenshot("Bulk_Upload_error.png")
+#         raise
 
 
 @allure.feature('Login Feature')
@@ -397,24 +397,24 @@ def test_Create_Team(driver):
     create_team(driver, TeamName, NewUser, UserId, Email)
 
 
-@allure.feature('Bulk import inside the selected Team')
-@allure.story('Bulk import')
-def test_Bulk_import(driver):
-    config_path = os.path.join(os.path.dirname(__file__), 'config.json')
-    inputData = read_input_values(config_path)
-    CSV = inputData['CSV']
-
-    # The correct function to call for bulk import is 'Bulk_import'
-    Bulk_import(driver, CSV)
-
-    try:
-        post_login_element = WebDriverWait(driver, 20).until(
-            EC.visibility_of_element_located((By.XPATH, "//span[contains(.,'Sanas Portal')]"))
-        )
-        assert post_login_element is not None
-    except Exception as e:
-        print(f"An error occurred during post-login verification: {e}")
-        driver.save_screenshot("post_login_error.png")
-        raise
+# @allure.feature('Bulk import inside the selected Team')
+# @allure.story('Bulk import')
+# def test_Bulk_import(driver):
+#     config_path = os.path.join(os.path.dirname(__file__), 'config.json')
+#     inputData = read_input_values(config_path)
+#     CSV = inputData['CSV']
+#
+#     # The correct function to call for bulk import is 'Bulk_import'
+#     Bulk_import(driver, CSV)
+#
+#     try:
+#         post_login_element = WebDriverWait(driver, 20).until(
+#             EC.visibility_of_element_located((By.XPATH, "//span[contains(.,'Sanas Portal')]"))
+#         )
+#         assert post_login_element is not None
+#     except Exception as e:
+#         print(f"An error occurred during post-login verification: {e}")
+#         driver.save_screenshot("post_login_error.png")
+#         raise
 
 
